@@ -1,5 +1,4 @@
 from flask import Flask, render_template, redirect, jsonify
-from flask_pymongo import PyMongo
 import csv
 import sqlite3
 import pandas as pd
@@ -23,8 +22,6 @@ def home():
 
 
 
-
-
 # API routes
 
 @app.route("/api/test")
@@ -40,7 +37,7 @@ def test():
 
     
     
-    tornado_df = pd.read_sql("SELECT date, mag from tornado", conn)[0:10]
+    tornado_df = pd.read_sql("SELECT * from tornado where [yr] > 2015", conn)
 
     response = tornado_df.to_dict(orient="records")
 
