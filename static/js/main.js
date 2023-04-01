@@ -1,5 +1,5 @@
 // Store the API endpoint as queryUrl.
-var queryUrl = "/api/test"
+var queryUrl = "/api/geojson"
 
 // Perform a GET request to the query URL/
 d3.json(queryUrl).then(function (data) {
@@ -12,19 +12,16 @@ function createFeatures(tornadoData) {
 // Define a function that we want to run once for each feature in the features array.
   // Give each feature a popup that describes the place, time, and mag of the tornado.
   function onEachFeature(feature, layer) {
-    console.log(feature.date);
-    
-    const date = feature.date;
-    const time = feature.time;
-    const mag = feature.mag;
-    console.log(feature.mag);
-    
+    const date = feature.properties.date;
+    const time = feature.properties.time;
+    const mag = feature.properties.mag;
+
     // starting Lat and Lon and ending Lat and Lon
-    const slat = feature.slat;
-    const slon = feature.slon;
-    const elat = feature.elat;
-    const elon = feature.elon;
-    const latlng = [feature.elat, feature.elon];
+    const slat = feature.properties.slat;
+    const slon = feature.properties.slon;
+    const elat = feature.properties.elat;
+    const elon = feature.properties.elon;
+    const latlng = [feature.properties.elat, feature.properties.elon];
 
     layer.bindPopup(`<h3>Tornado Details</h3>
       <p>Date: ${date}</p>
@@ -50,33 +47,32 @@ function createFeatures(tornadoData) {
           return "#FF0000"; // red
         }
       }
-
       // Define a function to create the markers for each tornado feature.
-      function createMarker(feature, latlng) {
+      function createMarker(feature) {
+
         // Get the year from the feature's time property.
-        var year = new Date(feature.time).getFullYear();
-        
+        var year = new Date(feature.properties.date).getFullYear();
+              
         // Check if the year matches the selected year.
-        if (year === selectedYear) {
+        if (year === 2017) {
           // Determine the size of the marker based on the magnitude.
-          var size = feature.mag * 50;
+          var size = feature.properties.mag * 3;
       
-          // Create the marker object.
-          var marker = L.circleMarker(latlng, {
+          // Create the marker object using the feature's coordinates.
+          var marker = L.circleMarker([feature.geometry.coordinates[1], feature.geometry.coordinates[0]], {
             color: "#000000",
-            fillColor: getColor(feature.mag),
+            fillColor: getColor(feature.properties.mag),
             fillOpacity: 1.0,
             radius: size,
             weight: 1
           });
       
           // Add a popup to the marker.
-          marker.bindPopup(`<h3>${feature.date}</h3><hr><p>${new Date(feature.time)}</p><p>Magnitude: ${feature.mag}</p><p>Coordinates: ${[feature.slat, feature.slon]}</p>`);
-      
+          marker.bindPopup(`<h3>${feature.properties.date}</h3><hr><p>${new Date(feature.properties.time)}</p><p>Magnitude: ${feature.properties.mag}</p><p>Coordinates: ${[feature.properties.slat, feature.properties.slon]}</p>`);
           // Return the marker object.
           return marker;
         }
-      }      
+      }
 // Create a GeoJSON layer that contains the features array on the tornadoData object.
   // Run the onEachFeature function once for each piece of data in the array.
   var tornados = L.geoJSON(tornadoData, {
@@ -105,7 +101,7 @@ legend.onAdd = function (map) {
   createMap(tornados);
 
   function createMap(tornados) {
-
+    console.log("createMap function called");
     // Create the base layers.
 
     var natGeo = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/NatGeo_World_Map/MapServer/tile/{z}/{y}/{x}', {
@@ -136,14 +132,14 @@ legend.onAdd = function (map) {
       zoom: 5,
       layers: [topo, tornados]
     });
-  
+    console.log(myMap);
     // Create a layer control.
     // Pass it our baseMaps and overlayMaps.
     // Add the layer control to the map.
     L.control.layers(baseMaps, overlayMaps, {
       collapsed: false
     }).addTo(myMap);
-  
+    console.log("Layer control added to map");
 legend.addTo(myMap);
   }
 
