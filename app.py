@@ -1,5 +1,4 @@
 from flask import Flask, render_template, redirect, jsonify
-from flask_pymongo import PyMongo
 import csv
 import sqlite3
 import pandas as pd
@@ -40,7 +39,7 @@ def test():
 
     
     
-    tornado_df = pd.read_sql("SELECT date, mag from tornado", conn)[0:10]
+    tornado_df = pd.read_sql("SELECT year, [property loss $], [property loss $M] from tornado WHERE year = 2010", conn)
 
     response = tornado_df.to_dict(orient="records")
 
