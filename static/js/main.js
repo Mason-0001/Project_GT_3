@@ -1,14 +1,14 @@
 // Determine the color of the marker based on the Magnitude.
-function getColor(mag) {
-  if (mag <= 1) {
+function getColor(EFscale) {
+  if (EFscale <= 1) {
     return "#00FF00"; // green
-  } else if (mag <= 1.5) {
+  } else if (EFscale <= 1.5) {
     return "#ADFF2F"; // green-yellow
-  } else if (mag <= 2) {
+  } else if (EFscale <= 2) {
     return "#FFFF00"; // yellow
-  } else if (mag <= 3) {
+  } else if (EFscale <= 3) {
     return "#FFA500"; // orange
-  } else if (mag <= 4) {
+  } else if (EFscale <= 4) {
     return "#FF4500"; // orange-red
   } else {
     return "#FF0000"; // red
@@ -82,18 +82,18 @@ function getDatesByYear(features, year) {
     
 function createMarkers(filtFeatures)  {
   function createMarker(feature) {
-      var size = feature.properties.mag * 3;
+      var size = feature.properties.EFscale * 3;
       // Create the marker object using the feature's coordinates.
-      var marker = L.circleMarker([feature.geometry.coordinates[1], feature.geometry.coordinates[0]], {
+      var marker = L.circleMarker([feature.geometry.coordinates[0], feature.geometry.coordinates[1]], {
           color: "#000000",
-          fillColor: getColor(feature.properties.mag),
+          fillColor: getColor(feature.properties.EFscale),
           fillOpacity: 1.0,
           radius: size,
           weight: 1
       });
 
       // Add a popup to the marker.
-      marker.bindPopup(`<h3>${feature.properties.date}</h3><hr><p>${new Date(feature.properties.date)}</p><p>Magnitude: ${feature.properties.mag}</p><p>Coordinates: ${[feature.properties.slat, feature.properties.slon]}</p>`);
+      marker.bindPopup(`<h3>${feature.properties.date}</h3><hr><p>${new Date(feature.properties.date)}</p><p>Magnitude: ${feature.properties.EFscale}</p><p>Coordinates: ${[feature.properties.slat, feature.properties.slon]}</p>`);
       // Return the marker object.
       return marker;
   }
