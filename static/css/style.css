@@ -28,3 +28,7 @@ body {
     padding: 2px;
   }
   
+  #year-selector {
+    position: relative;
+    z-index: 10000; /* Make sure the dropdown appears above the map */
+  }
