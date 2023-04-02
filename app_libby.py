@@ -126,7 +126,7 @@ def timechart():
 
     
     
-    tornado_df = pd.read_sql("SELECT yr as Year, count(mag) as Tornados, avg(mag) as Magnitude, avg(loss) as Loss from tornado where [yr] >= 2000 group by yr", conn)
+    tornado_df = pd.read_sql("SELECT yr as Year, count(mag) as Tornados, avg(mag) as Magnitude, avg(loss) as Loss from tornado where [yr] >= 2007 group by yr order by yr", conn)
 
     response = tornado_df.to_dict(orient="records")
     return jsonify(response)
@@ -145,7 +145,7 @@ def statechart():
 
     
     
-    tornado_df = pd.read_sql("SELECT yr as Year, st as State, count(mag) as Tornados, avg(mag) as Magnitude, avg(loss) as Loss from tornado where [yr] >= 2000 group by yr, st", conn)
+    tornado_df = pd.read_sql("SELECT yr as Year, st as State, count(mag) as Tornados, avg(mag) as Magnitude, avg(loss) as Loss from tornado where [yr] >= 2007 group by yr, st order by yr", conn)
 
     response = tornado_df.to_dict(orient="records")
     return jsonify(response)
