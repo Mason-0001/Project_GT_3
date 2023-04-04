@@ -24,7 +24,33 @@
 </select>
   <!-- The div that holds our map -->
   <div id="map"></div>
+  
+ 
+    <!-- div for summary table -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">  
+                <div id="summary" class="panel" style="background-color:lightgrey;">
+                    <div class="panel-heading" style="background-color:black; color: white ;" >
+                        <h3 class="panel-title">Tornado Statistics</h3>
+                    </div>
+                    <div id="statistics" class="panel-body" ></div>
+                        <p id="total-tornado" style="padding-left: 2rem;">0</p>
+                        <p id="total-loss" style="padding-left: 2rem;">0</p>
+                        <p id="total-injuries" style="padding-left: 2rem;">0</p>
+                        <p id="total-fatalities" style="padding-left: 2rem;">0</p>
+                        <p id="total-length" style="padding-left: 2rem;">0</p>
+                        <p id="max-loss" style="padding-left: 2rem;">0</p>
+                        <p id="max-injuries" style="padding-left: 2rem;">0</p>
+                        <p id="max-fatalities" style="padding-left: 2rem;">0</p>
+                        <p id="max-length" style="padding-left: 2rem;">0</p>
+                        <p id="max-width" style="padding-left: 2rem;">0</p>
+                </div>
+            </div>
+        </div>
+    </div>
 
+    
   <!-- Leaflet JS -->
   <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
     integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
