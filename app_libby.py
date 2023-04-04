@@ -34,10 +34,8 @@ def test():
 
     # Establisting a connection to our database
     conn = engine.connect()
-
     
-    
-    tornado_df = pd.read_sql("SELECT * from tornado where [yr] > 2015", conn)
+    tornado_df = pd.read_sql("SELECT * from tornado where [year] > 2006", conn)
 
     response = tornado_df.to_dict(orient="records")
 
@@ -48,39 +46,25 @@ def test():
             "type": "Feature",
             "geometry": {
                 "type": "Point",
-                "coordinates": [tornado["elon"], tornado["elat"]]
+                "coordinates": [tornado["starting latitude"], tornado["starting longitude"]]
             },
             "properties": {
-                "closs": tornado["closs"],
+                "year": tornado["year"],
+                "month": tornado["month"],
+                "day": tornado["day"],
                 "date": tornado["date"],
-                "dy": tornado["dy"],
-                "elat": tornado["elat"],
-                "elon": tornado["elon"],
-                "f1": tornado["f1"],
-                "f2": tornado["f2"],
-                "f3": tornado["f3"],
-                "f4": tornado["f4"],
-                "fat": tornado["fat"],
-                "fc": tornado["fc"],
-                "index": tornado["index"],
-                "inj": tornado["inj"],
-                "len": tornado["len"],
-                "loss": tornado["loss"],
-                "mag": tornado["mag"],
-                "mo": tornado["mo"],
-                "ns": tornado["ns"],
-                "om": tornado["om"],
-                "sg": tornado["sg"],
-                "slat": tornado["slat"],
-                "slon": tornado["slon"],
-                "sn": tornado["sn"],
-                "st": tornado["st"],
-                "stf": tornado["stf"],
-                "stn": tornado["stn"],
-                "time": tornado["time"],
-                "tz": tornado["tz"],
-                "wid": tornado["wid"],
-                "yr": tornado["yr"]
+                "state": tornado["state"],
+                "EFscale": tornado["EF scale"],
+                "injuries": tornado["injuries"],
+                "fatalities": tornado["fatalities"],
+                "property loss $": tornado["property loss $"],
+                "crop loss": tornado["crop loss"],
+                "slat": tornado["starting latitude"],
+                "slon": tornado["starting longitude"],
+                "ending latitude": tornado["ending latitude"],
+                "ending longitude": tornado["ending longitude"],
+                "length in miles": tornado["length in miles"],
+                "width in yards": tornado["width in yards"],
             }
         }
         features.append(feature)
@@ -93,7 +77,6 @@ def test():
     return jsonify(geojson)
 
 
-
 @app.route("/api/json")
 def statistics():
         # Path to SQLite file
@@ -104,10 +87,8 @@ def statistics():
 
     # Establisting a connection to our database
     conn = engine.connect()
-
-    
-    
-    tornado_df = pd.read_sql("SELECT yr, date, inj, loss, mag, fat, wid, len from tornado where [yr] > 2015", conn)
+   
+    tornado_df = pd.read_sql("SELECT year, date, injuries, [property loss $], [EF scale], fatalities, [width in yards], [length in miles] from tornado where [year] > 2006", conn)
 
     response = tornado_df.to_dict(orient="records")
     return jsonify(response)
@@ -123,10 +104,8 @@ def timechart():
 
     # Establisting a connection to our database
     conn = engine.connect()
-
-    
-    
-    tornado_df = pd.read_sql("SELECT yr as Year, count(mag) as Tornados, avg(mag) as Magnitude, avg(loss) as Loss from tornado where [yr] >= 2007 group by yr order by yr", conn)
+ 
+    tornado_df = pd.read_sql("SELECT year as Year, count([EF scale]) as Tornados, avg([EF scale]) as Magnitude, avg([property loss $]) as Loss from tornado where [year] > 2006 group by year order by year", conn)
 
     response = tornado_df.to_dict(orient="records")
     return jsonify(response)
@@ -145,7 +124,7 @@ def statechart():
 
     
     
-    tornado_df = pd.read_sql("SELECT yr as Year, st as State, count(mag) as Tornados, avg(mag) as Magnitude, avg(loss) as Loss from tornado where [yr] >= 2007 group by yr, st order by yr", conn)
+    tornado_df = pd.read_sql("SELECT year as Year, state as State, count([EF scale]) as Tornados, avg([EF scale]) as Magnitude, avg([property loss $]) as Loss from tornado where [year] >= 2007 group by year, state order by year", conn)
 
     response = tornado_df.to_dict(orient="records")
     return jsonify(response)
