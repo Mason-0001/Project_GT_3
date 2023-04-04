@@ -38,7 +38,6 @@ function createLegend() {
 
 // Create Map
 function createMap() {
-  console.log("createMap function called");
   // Create the base layers.
 
   var natGeo = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/NatGeo_World_Map/MapServer/tile/{z}/{y}/{x}', {
@@ -50,10 +49,16 @@ function createMap() {
     attribution: 'Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, <a href="http://viewfinderpanoramas.org">SRTM</a> | Map style: &copy; <a href="https://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)'
   });
 
+  var street = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+  });
+
   // Create a baseMaps object.
   var baseMaps = {
     "Topographic Map": topo,
-    "National Geographic Map": natGeo
+    "National Geographic Map": natGeo,
+    "Street Map": street
   };
 
   // Create our map, giving it the streetmap and tornado layers to display on load.
@@ -71,18 +76,19 @@ function createMap() {
   L.control.layers(baseMaps, null, {
     collapsed: false
   }).addTo(myMap);
-  console.log("Layer control added to map");
   return myMap;
 }
 
+// make a function to all data in selected year.
 function getDatesByYear(features, year) {
   year = parseInt(year);
   return features.filter(obj => new Date(obj.properties.date).getFullYear() === year);
   }
-    
+
+// make markers function
 function createMarkers(filtFeatures)  {
   function createMarker(feature) {
-      var size = feature.properties.EFscale * 3;
+      var size = feature.properties.lmiles / 2;
       // Create the marker object using the feature's coordinates.
       var marker = L.circleMarker([feature.geometry.coordinates[0], feature.geometry.coordinates[1]], {
           color: "#000000",
@@ -93,7 +99,7 @@ function createMarkers(filtFeatures)  {
       });
 
       // Add a popup to the marker.
-      marker.bindPopup(`<h3>${feature.properties.date}</h3><hr><p>${new Date(feature.properties.date)}</p><p>Magnitude: ${feature.properties.EFscale}</p><p>Coordinates: ${[feature.properties.slat, feature.properties.slon]}</p>`);
+      marker.bindPopup(`<h3>${feature.properties.date}</h3><hr><p>EF Scale: ${feature.properties.EFscale}</p><p>Injuries: ${feature.properties.injuries}</p><p>Fatalities: ${[feature.properties.fatalities]}</p><p>Property Loss: $${feature.properties.propertyloss}</p><p>Width in Yards: ${feature.properties.wyards}</p>`);
       // Return the marker object.
       return marker;
   }
@@ -101,7 +107,7 @@ function createMarkers(filtFeatures)  {
 }
 
 
-
+// make a function to create the year selector
 function createYearSelector() {
   // Code for dropdown menu that updates map
   // Get a reference to the year selector element.
@@ -118,24 +124,81 @@ function createYearSelector() {
   }
   return yearSelector
 }
+  // Create heatmap config.
+  var cfg = {
+    "radius": 5,
+    "maxOpacity": .8, 
+    "scaleRadius": true, 
+    "useLocalExtrema": false,
+    latField: 'lat',
+    lngField: 'lng',
+    valueField: 'count'
+  };
+  
+  // Create Heatmap function.
+  function createHeatmapLayer(data) {
+    var heatmapLayer = new HeatmapOverlay(cfg);
+    console.log(heatmapLayer)
+    // Define an empty list to store the extracted data
+    var ndata = [];
+
+    // Iterate over the features and extract the desired fields (need to do this for the .setData)
+    for (var i = 0; i < data.length; i++) {
+      var feature = data[i];
+      var lat = feature.properties.slat;
+      var lng = feature.properties.slon;
+      var value = feature.properties.EFscale;
+      
+      // Create a dictionary with the extracted fields and append it to the data list
+      ndata.push({lat: lat, lng: lng, count: value});
+    }
+    heatDict = {
+      max: ndata.length,
+      data: ndata
+    }
+
+    heatmapLayer.setData(heatDict);
+    return heatmapLayer;
+  }
 
 // Perform a GET request to the query URL/
 d3.json("/api/geojson").then(function (data) {
   // Once we get a response, send the data.features object to the createFeatures function.
   map = createMap();
+  console.log(data)
   createLegend().addTo(map);
   yearSel = createYearSelector();
+  console.log(yearSel)
   var markersLayer = L.layerGroup();
+  var heatmapLayer = createHeatmapLayer([]);
   markersLayer.addTo(map);
+  heatmapLayer.addTo(map);
   // Add an event listener to the year selector element.
   yearSel.addEventListener("change", function () {
       // Get the selected year from the year selector element.
+      // Create a layer control object and add it to the map.
+
       var selectedYear = yearSel.value;
       // Update the map with the selected year.
-      filtFeatures = getDatesByYear(data["features"], selectedYear)
 
+      filtFeatures = getDatesByYear(data["features"], selectedYear)
       markers = createMarkers(filtFeatures);
       markersLayer.clearLayers();
+
+      if (filtFeatures.length > 0) {
+        map.removeLayer(heatmapLayer);
+        heatmapLayer = createHeatmapLayer(filtFeatures);
+        heatmapLayer.addTo(map);
+      }
+      var nodes = d3.selectAll(".leaflet-control-layers").nodes()
+      if (nodes.length > 1) {
+        d3.select(nodes[1]).remove()
+      }
+      var overlayMaps = {
+        "Tornado Markers": markersLayer,
+        "Tornado Heatmap": heatmapLayer
+        };
+        L.control.layers(null, overlayMaps, {collapsed: false}).addTo(map);
       markers.map(m => m.addTo(markersLayer))
   });
 
