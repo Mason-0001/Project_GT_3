@@ -161,6 +161,22 @@ function createYearSelector() {
     return heatmapLayer;
   }
 
+  // Create path chart layer
+  function createPathLayer(filtFeatures) {
+    function createPaths(feature) {
+      console.log(filtFeatures)
+    var line = [
+      [feature.properties.slat, feature.properties.slon],
+      [feature.properties.elat, feature.properties.elon]
+    ];
+    console.log(line)
+    var path = L.polyline(line, {
+      color: "blue"
+    })
+    return path
+  }
+  return filtFeatures.map(createPaths);
+}
 // Perform a GET request to the query URL/
 d3.json("/api/geojson").then(function (data) {
   // Once we get a response, send the data.features object to the createFeatures function.
@@ -168,11 +184,14 @@ d3.json("/api/geojson").then(function (data) {
   console.log(data)
   createLegend().addTo(map);
   yearSel = createYearSelector();
-  console.log(yearSel)
+  
+  // create layers on map
   var markersLayer = L.layerGroup();
   var heatmapLayer = createHeatmapLayer([]);
+  var pathLayer = L.layerGroup()
   markersLayer.addTo(map);
   heatmapLayer.addTo(map);
+  
   // Add an event listener to the year selector element.
   yearSel.addEventListener("change", function () {
       // Get the selected year from the year selector element.
@@ -181,9 +200,12 @@ d3.json("/api/geojson").then(function (data) {
       var selectedYear = yearSel.value;
       // Update the map with the selected year.
 
-      filtFeatures = getDatesByYear(data["features"], selectedYear)
+      filtFeatures = getDatesByYear(data["features"], selectedYear);
       markers = createMarkers(filtFeatures);
+      paths = createPathLayer(filtFeatures);
       markersLayer.clearLayers();
+      pathLayer.clearLayers();
+
 
       if (filtFeatures.length > 0) {
         map.removeLayer(heatmapLayer);
@@ -196,10 +218,12 @@ d3.json("/api/geojson").then(function (data) {
       }
       var overlayMaps = {
         "Tornado Markers": markersLayer,
-        "Tornado Heatmap": heatmapLayer
+        "Tornado Heatmap": heatmapLayer,
+        "Tornado Paths": pathLayer
         };
         L.control.layers(null, overlayMaps, {collapsed: false}).addTo(map);
       markers.map(m => m.addTo(markersLayer))
+      paths.map(m=> m.addTo(pathLayer))
   });
 
 });

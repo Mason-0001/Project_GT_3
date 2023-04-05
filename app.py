@@ -61,8 +61,8 @@ def test():
                 "crop loss": tornado["crop loss"],
                 "slat": tornado["starting latitude"],
                 "slon": tornado["starting longitude"],
-                "elatitude": tornado["ending latitude"],
-                "elongitude": tornado["ending longitude"],
+                "elat": tornado["ending latitude"],
+                "elon": tornado["ending longitude"],
                 "lmiles": tornado["length in miles"],
                 "wyards": tornado["width in yards"],
             }
