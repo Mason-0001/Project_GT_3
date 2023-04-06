@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <meta name="viewport" content="with=device-width, initial-scale=1.0">
+    <title>Project 3 Group 4 - Tornadoes</title>
+    <link rel="stylesheet" href="static\css\style_alt.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Averia+Sans+Libre:wght@300;400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/fontawesome.min.css">
+</head>
+<body>
+<section class="header">
+    <nav>
+        <a href="index.html"><img src="static\images\Storm_Chasers_logo.jpg"></a>
+        <div class="nav-links" id="navLinks">
+          <i class="fa fa-times" onclick="hideMenu()"></i> 
+            <ul>
+                <li><a href="/">HOME</a></li>
+                <li><a href="/maps">MAPS</a></li>
+                <li><a href="/charts">CHARTS</a></li>
+            </ul>
+        </div>
+        <i class="fa fa-bars" onclick="showMenu()"></i>
+    </nav>
+
+<div class="text-box">
+    <h1>Storm Chasers</h1>
+    <p>Analyzing Tornadoes in the United States
+    </p>
+    <a href="" class="hero-btn">Learn More</a>
+</div>
+
+</section>
+
+<!-- ------About Tornadoes------- -->
+<section class="about_tor">
+    <h1>TORNADOES</h1>
+    <p>Planning to move to another state in the U.S.?</p>
+    <p>Use the maps and charts on this website to see when and where tornadoes have 
+        wreaked havoc historically.</p>
+
+    <div class="row">
+        <div class="torn-col">
+            <h3>About Tornadoes</h3>
+            <p>Tornadoes are deadly natural disasters with extreme winds that can
+              exceed 200 miles per hour. Every year, more than 1,200 tornadoes
+              touch down in the United States alone. Tornadoes develop rapidly,
+              giving little to no warning of when or where they will strike.
+              We have developed these visualizations to help people better understand the dangers of tornados in their area or any area they are going to.</p>
+        </div>
+        <div class="torn-col">
+            <h3>Tornado Data source</h3>
+            <p>We are using data from the Storm Prediction Center of the
+              NOAA’s National Weather Service which has the best data available on tornados in the U.S. Our data shows all tornadoes that registered on the EF Scale
+              in the United States from 2007 to 2021. This data was compiled by the NOAA from a variety of sources which include but are not limited to: county, state, 
+              and federal emergency management officials, local law enforcement officials, skywarn spotters, NWS damage surveys, newspaper clipping services, the insurance industry, 
+              and the general public.</p>
+            <p>
+              <a target="_blank" href="https://www.spc.noaa.gov/wcm/">Click here to find the data used in our visualizations.</a>
+              </p>
+              <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+        
+        </div>
+        <div class="torn-col">
+            <h3>About Us</h3>
+            <p>This site is brought to you courtesy of the Storm Chasers, consisting of the four members:
+            <ul>
+                <p>Jack Fitzgerald</p>
+                <p>Libby Berter</p>
+                <p>Mason Portman</p>
+                <p>Priscila Briggs</p>
+            </ul>
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- ------Tornadoes Categories table------- -->
+
+<!-- <style>
+  td {
+      border: solid 2px lightgrey;
+  }
+  </style> -->
+  <h3 class="description-header">Tornado Classifications</h3>
+  <div class="col-auto">
+    </div>
+    <div class="text-center">
+    <table>
+      <tr>
+        <th scope="col" style="width:5%">Classification</th>
+        <th scope="col" style="width:6%">Category/EF Number</th>
+        <th scope="col" style="width:3%">Wind speed (3 Second Gust - mph)</th>
+      </tr>
+      <tr>
+        <td rowspan="2">Weak</td>
+        <td>0</td>
+        <td>65 to 85</td>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>86 to 110</td>
+      </tr>
+      <tr>
+        <td rowspan="2">Strong</td>
+        <td>2</td>
+        <td>111 to 135</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>136 to 165</td>
+      </tr>
+      <tr>
+        <td rowspan="2">Violent</td>
+        <td>4</td>
+        <td>166 to 200</td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td>Over 200</td>
+      </tr>
+    </table>
+    </div>
+ 
+  
+<!-- iframe element -->
+<h3 class="description-header">Tornado in action</h3>
+  <p align="center">
+  <iframe width=66% height="500" src="https://www.youtube.com/embed/lxdFh8nYMgM" frameborder="0" allowfullscreen></iframe>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+  </p>
+
+<!-- ------JavaScript for Toggle Menu ------- -->
+<script>
+
+    var navLinks = document.getElementById("navLinks");
+
+    function showMenu(){
+        navLinks.style.right = "0"
+    }
+    function hideMenu(){
+        navLinks.style.right = "-200px"
+    }
+</script>
+    
+</body>
+</html>

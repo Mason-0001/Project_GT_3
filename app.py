@@ -9,17 +9,19 @@ from sqlalchemy import create_engine
 app = Flask(__name__)
 
 
-
-
-
-# web route
+# web routes
 @app.route('/')
 def home():
-    return render_template("map.html")
+    return render_template("index.html")
 
 
+@app.route('/maps')
+def maps():
+    return render_template("index_map.html")
 
-
+@app.route('/charts')
+def charts():
+    return render_template("charts.html")
 
 
 # API routes
@@ -49,7 +51,6 @@ def test():
                 "coordinates": [tornado["starting latitude"], tornado["starting longitude"]]
             },
             "properties": {
-                "year": tornado["year"],
                 "month": tornado["month"],
                 "day": tornado["day"],
                 "date": tornado["date"],
@@ -64,7 +65,7 @@ def test():
                 "elat": tornado["ending latitude"],
                 "elon": tornado["ending longitude"],
                 "lmiles": tornado["length in miles"],
-                "wyards": tornado["width in yards"],
+                "wyards": tornado["width in yards"]
             }
         }
         features.append(feature)

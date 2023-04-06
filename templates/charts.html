@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document Charts</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="static\css\style_charts.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Averia+Sans+Libre:wght@300;400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/fontawesome.min.css">
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+  integrity="sha 512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+  crossorigin="" />
+   
+</head>
+
+<body>
+<section class="sub-header">
+    <nav>
+        <a href="index.html"><img src="static\images\Storm_Chasers_logo.jpg"></a>
+        <div class="nav-links" id="navLinks">
+          <i class="fa fa-times" onclick="hideMenu()"></i> 
+            <ul>
+                <li><a href="/">HOME</a></li>
+                <li><a href="/maps">MAPS</a></li>
+                <li><a href="/charts">CHARTS</a></li>
+            </ul>
+        </div>
+        <i class="fa fa-bars" onclick="showMenu()"></i>
+    </nav>
+    <h1>CHARTS</h1>
+
+</section> 
+
+    <!-- The div that holds our map -->
+    <!-- <div id="map"></div> -->
+
+    
+    <!-- selectors -->
+    <div class="container">
+        <br>
+        
+        <div class="row ml-2" >
+            <div class="col-md-4">
+                <!-- year selector -->
+                <div class ="row">
+                    <div class="col-md-6" style="padding-left: 16px;">
+                        <p>Select Year to Change:</p>
+                    </div>
+                    <div class="col-md-4">
+                        <select id="year-selector">
+                            <option value="">2021</option>
+                        </select>
+                    </div>
+                </div> 
+                    
+            </div>
+            <!-- chart selector -->
+            <div class="col-md-8">
+                <!-- <label value="">Select a Chart:</label> -->
+                <div class="row justify-content-center" style="padding-bottom: 4px;">
+                    <div class="col-md-4"></div>
+                    <div class="col-md-5">
+                        <input type="button" id="but" value="Select Chart" />
+                    </div>
+                    <div class="col-md-2"></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-3">
+                        <input type="radio" name = "radio" id="Tornado"  value="1" checked><strong>  Tornados/yr</strong>
+                    </div>
+                    <div class="col-md-3">
+                        <input type="radio" name = "radio" id="Mag"  value="2" ><strong>  Avg Strength/yr</strong>
+                    </div>
+                    <div class="col-md-3">
+                        <input type="radio" name = "radio" id="Loss"  value="3" ><strong>  Total Property Loss</strong>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <br>
+
+    
+    
+    <!-- div for summary table & charts -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">  
+                <div id="summary" class="panel" style="background-color:lightgrey;">
+                    <div class="panel-heading" style="background-color:black; color: white ;" >
+                        <h3 class="panel-title">Tornado Statistics for year 2021</h3>
+                    </div>
+                    <div id="statistics" class="panel-body" ></div>
+                        <p id="total-tornado" style="padding-left: 1.5rem; ">0</p>
+                        <p id="total-loss" style="padding-left: 1.5rem;">0</p>
+                        <p id="total-injuries" style="padding-left: 1.5rem;">0</p>
+                        <p id="total-fatalities" style="padding-left: 1.5rem;">0</p>
+                        <p id="total-length" style="padding-left: 1.5rem;">0</p>
+                        <p id="max-loss" style="padding-left: 1.5rem;">0</p>
+                        <p id="max-injuries" style="padding-left: 1.5rem;">0</p>
+                        <p id="max-fatalities" style="padding-left: 1.5rem;">0</p>
+                        <p id="max-length" style="padding-left: 1.5rem;">0</p>
+                        <p id="max-width" style="padding-left: 1.5rem;">0</p>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div>
+                    <canvas id="stateChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div>
+                <canvas id="timeChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    
+
+
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+    integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+    crossorigin=""></script>
+  <!-- D3 JavaScript -->
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+  <!-- Our JavaScript -->
+  <script type="text/javascript" src="static/js/main_libby.js"></script>
+  <!-- Chart.JS -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.2.1/dist/chart.umd.min.js"></script>
+
+</body>
+
+</html>
