@@ -143,7 +143,7 @@ p{
 }
 .torn-col{
     flex-basis:31%;
-    background: #fff3f3;
+    background: #D6EAF8;
     border-radius: 10px;
     margin-bottom: 5%;
     padding: 20px 12px;
@@ -162,4 +162,102 @@ h3{
     .row{
         flex-direction:column;
     }
+}
+
+/* -------Style table----------- */
+.blog-right{
+    flex-basis: 32%;
+}
+.blog-right h3{
+    background: #D6EAF8;
+    color: #030000;
+    padding: 7px 0;
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+.blog-right div{
+    display: flex;
+    align-items: stretch;
+    justify-content: space-evenly;
+    color: #555;
+    padding: 8px;
+    box-sizing: border-box;
+}
+
+
+
+
+/* -------Style charts----------- */
+.sub-header{
+    height: 20vh;
+    width: 100%;
+    background-image: url(https://images.pexels.com/photos/1446076/pexels-photo-1446076.jpeg?auto=compress&cs=tinysrgb&w=1600);
+    background-position: center;
+    background-size: cover;
+    text-align: center;
+    color: #fff;
+}
+
+.sub-header h1{
+    margin-top: 100px;
+}
+
+/* -------Style charts and maps----------- */
+
+body {
+    padding: 0;
+    margin: 0;
+  }
+  
+#map,
+body,
+html {
+height: 100%;
+}
+
+.info.legend {
+    padding-top: 5px; /* Add 10px of padding to the top */
+    padding-right: 5px;
+    padding-left: 5px;
+    padding-bottom: 5px;
+}
+
+.legend i {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    margin-right: 5px;
+    margin-left: 5px;
+}
+
+.info.legend i {
+    padding: 2px;
+}
+
+#year-selector {
+    position: relative;
+    z-index: 10000; /* Make sure the dropdown appears above the map */
+}
+
+.sub-header-maps{
+    height: 35vh;
+    width: 100%;
+    background-image: url(https://www.superiorwallpapers.com/sun-sky/beginning-of-a-tornado_2560x1600.jpg);
+    background-position: center;
+    background-size: cover;
+    text-align: center;
+    color: #fff;
+}
+
+.sub-header-maps h1{
+    margin-top: 30px;
+}
+
+/* Table formatting */
+
+td {
+    border: 1px solid black;
+}
+th {
+    border: 1px solid black;
 }

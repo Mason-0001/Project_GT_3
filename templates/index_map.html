@@ -1,22 +1,65 @@
 <!DOCTYPE html>
+<html>
+<head>
+   <!-- <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
+   <meta name="viewport" content="with=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="static\css\style_alt.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Averia+Sans+Libre:wght@300;400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/fontawesome.min.css">
+<!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+  integrity="sha 512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+  crossorigin="" />
+
+<!-- Our CSS -->
+  <link rel="stylesheet" type="text/css" href="static\css\sytle_maps.css">
+
+
+</head>
+<body>
+<section class="sub-header-maps">
+    <nav>
+        <a href="index.html"><img src="static\images\Storm_Chasers_logo.jpg"></a>
+        <div class="nav-links" id="navLinks">
+          <i class="fa fa-times" onclick="hideMenu()"></i> 
+            <ul>
+                <li><a href="/">HOME</a></li>
+                <li><a href="/maps">MAPS</a></li>
+                <li><a href="/charts">CHARTS</a></li>
+            </ul>
+        </div>
+        <i class="fa fa-bars" onclick="showMenu()"></i>
+    </nav>
+    <h1>MAPS</h1>
+
+</section> 
+
+
+<!-- -------
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Document</title> -->
 
-    <!-- Leaflet CSS -->
+    <!-- Leaflet CSS
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
   integrity="sha 512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
   crossorigin="" />
 
-    <!-- Our CSS -->
-  <link rel="stylesheet" type="text/css" href="static/css/style.css">
+    Our CSS
+  <link rel="stylesheet" type="text/css" href="static\css\sytle_maps.css"> -->
 
-</head>
+<!-- </head>
 
-<body>
+<body> -->
     
 <!-- dropdown to select year -->
 <select id="year-selector">
@@ -27,34 +70,16 @@
   
  
     <!-- div for summary table -->
-    <!-- <div class="container">
-        <div class="row">
-            <div class="col-md-4">  
-                <div id="summary" class="panel" style="background-color:lightgrey;">
-                    <div class="panel-heading" style="background-color:black; color: white ;" >
-                        <h3 class="panel-title">Tornado Statistics</h3>
-                    </div>
-                    <div id="statistics" class="panel-body" ></div>
-                        <p id="total-tornado" style="padding-left: 2rem;">0</p>
-                        <p id="total-loss" style="padding-left: 2rem;">0</p>
-                        <p id="total-injuries" style="padding-left: 2rem;">0</p>
-                        <p id="total-fatalities" style="padding-left: 2rem;">0</p>
-                        <p id="total-length" style="padding-left: 2rem;">0</p>
-                        <p id="max-loss" style="padding-left: 2rem;">0</p>
-                        <p id="max-injuries" style="padding-left: 2rem;">0</p>
-                        <p id="max-fatalities" style="padding-left: 2rem;">0</p>
-                        <p id="max-length" style="padding-left: 2rem;">0</p>
-                        <p id="max-width" style="padding-left: 2rem;">0</p>
-                </div>
-            </div>
-        </div>
-    </div> -->
+
 
     
   <!-- Leaflet JS -->
   <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
     integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
     crossorigin=""></script>
+  <!-- Heatmap JS  -->
+  <script src="static/js/heatmap.js"></script>
+  <script src="static/js/heat.js"></script>
   <!-- D3 JavaScript -->
   <script src="https://d3js.org/d3.v5.min.js"></script>
   <!-- Our JavaScript -->

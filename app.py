@@ -51,7 +51,6 @@ def test():
                 "coordinates": [tornado["starting latitude"], tornado["starting longitude"]]
             },
             "properties": {
-                "year": tornado["year"],
                 "month": tornado["month"],
                 "day": tornado["day"],
                 "date": tornado["date"],
@@ -59,14 +58,14 @@ def test():
                 "EFscale": tornado["EF scale"],
                 "injuries": tornado["injuries"],
                 "fatalities": tornado["fatalities"],
-                "property loss $": tornado["property loss $"],
+                "propertyloss": tornado["property loss $"],
                 "crop loss": tornado["crop loss"],
                 "slat": tornado["starting latitude"],
                 "slon": tornado["starting longitude"],
-                "ending latitude": tornado["ending latitude"],
-                "ending longitude": tornado["ending longitude"],
-                "length in miles": tornado["length in miles"],
-                "width in yards": tornado["width in yards"],
+                "elat": tornado["ending latitude"],
+                "elon": tornado["ending longitude"],
+                "lmiles": tornado["length in miles"],
+                "wyards": tornado["width in yards"]
             }
         }
         features.append(feature)
