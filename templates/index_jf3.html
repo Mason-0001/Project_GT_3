@@ -1,0 +1,99 @@
+<!-- Setting up doc type and bootstrap CSS -->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Web Design Challenge</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css" media="screen">
+  </head>
+
+  <!-- Creating Nav Bar -->
+  <body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" href="jf_land.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="comparisons.html">Charts</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Maps</a>
+            <div class="dropdown-menu" aria-labelledby="dropdown03">
+              <a class="dropdown-item" href="visualizations_temp.html">Tornado Locations</a>
+              <a class="dropdown-item" href="visualizations_cloudiness.html">Heat Map</a>
+            </div>
+          </li>
+        </ul>
+       </div>
+    </nav>
+
+  <!-- Creating home page title and image -->
+  <div class="container-fluid">
+    <section class="row">
+      <div class="col-md-12">
+        <article class="description-content">
+
+          <h1 class="description-header">Tornado Something...</h1>
+          <hr class="description-hr"/>
+          <img class="img-fluid rounded mx-auto d-block" alt="..." src="tornado.jpg"  id="description-image"/>
+          <p>
+
+          </p>
+          <h4 class="description-header">About Tornadoes</h4>
+          <p>Tornadoes are deadly natural disasters with extreme winds that can exceed 200 miles per hour. Every year, more than 1,200 tornadoes touch down in the United States alone. Tornadoes develop rapidly, giving little to no warning of when or where they will strike, and that's why we've developed these visualizations. Use the maps and charts on this website to see when and where tornadoes have wreaked havic historically. </p>
+          <p>
+
+          </p>
+          <h4 class="description-header">Tornado Classifications</h4>
+          <div class="text-center">
+            <table class="table table-bordered">
+                <thead class="thead-light">
+              <tr>
+                <th scope="col">Classification</th>
+                <th scope="col">Category/EF Number</th>
+                <th scope="col">Wind speed (3 Second Gust - mph)</th>
+              </tr>
+            </thead>
+              <tr>
+                <td rowspan="2">Weak</td>
+                <td>0</td>
+                <td>65 to 85</td>
+              </tr>
+              <tr>  
+                <td>1</td>
+                <td>86 to 110</td>
+              </tr>
+              <tr>
+                <td rowspan="2">Strong</td>
+                <td>2</td>
+                <td>111 to 135</td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>136 to 165</td>
+              </tr>
+              <tr>
+                <td rowspan="2">Violent</td>
+                <td>4</td>
+                <td>166 to 200</td>
+              </tr>
+              <tr>
+                <td>5</td>
+                <td>Over 200</td>
+              </tr>
+            </div>
+            </table>
+        </div>
+          </p>
+          <h4 class="description-header">Tornado Datasource</h4>
+          <p>
+            <a target="_blank" href="https://www.weather.gov/mkx/taw-tornado_classification_safety">Click here for the data used in these visualizations.</a>
+          </p>
+          <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    </body>
+</html>
