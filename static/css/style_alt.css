@@ -80,7 +80,6 @@ nav img{
     background: #f44336;
     transition: 1s;
 }
-
 nav .fa{
     display: none;
 }
@@ -113,10 +112,7 @@ nav .fa{
         padding: 30px;
     }
 }
-
-
 /* -----About Tornadoes----- */
-
 .about_tor{
     width: 80%;
     margin: auto;
@@ -127,7 +123,6 @@ h1{
     font-size:36px;
     font-weight: 600;
 }
-
 p{
     color:#777;
     font-size: 14px;
@@ -135,7 +130,6 @@ p{
     line-height: 22px;
     padding: 10px;
 }
-
 .row{
     margin-top: 5%;
     display: flex;
@@ -163,7 +157,6 @@ h3{
         flex-direction:column;
     }
 }
-
 /* -------Style table----------- */
 .blog-right{
     flex-basis: 32%;
@@ -183,10 +176,6 @@ h3{
     padding: 8px;
     box-sizing: border-box;
 }
-
-
-
-
 /* -------Style charts----------- */
 .sub-header{
     height: 20vh;
@@ -197,13 +186,10 @@ h3{
     text-align: center;
     color: #fff;
 }
-
 .sub-header h1{
     margin-top: 100px;
 }
-
 /* -------Style charts and maps----------- */
-
 body {
     padding: 0;
     margin: 0;
@@ -214,14 +200,12 @@ body,
 html {
 height: 100%;
 }
-
 .info.legend {
     padding-top: 5px; /* Add 10px of padding to the top */
     padding-right: 5px;
     padding-left: 5px;
     padding-bottom: 5px;
 }
-
 .legend i {
     display: inline-block;
     width: 15px;
@@ -229,16 +213,13 @@ height: 100%;
     margin-right: 5px;
     margin-left: 5px;
 }
-
 .info.legend i {
     padding: 2px;
 }
-
 #year-selector {
     position: relative;
     z-index: 10000; /* Make sure the dropdown appears above the map */
 }
-
 .sub-header-maps{
     height: 35vh;
     width: 100%;
@@ -248,16 +229,71 @@ height: 100%;
     text-align: center;
     color: #fff;
 }
-
 .sub-header-maps h1{
     margin-top: 30px;
 }
-
 /* Table formatting */
-
-td {
+/* td {
     border: 1px solid black;
 }
 th {
     border: 1px solid black;
+} */
+/* New Table formatting */
+/* color variables */
+*::before,
+*::after{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
+.tbody{
+    font-family:'Courier New', Courier, monospace;
+    height: 100vh;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    color:antiquewhite;
+    font-size: 0.9rem;
+    background-color: #777;
+}
+table{
+    border-collapse: collapse;
+    box-shadow: 0 5px 10px #777;
+    background-color: #fff;
+    text-align: left;
+    overflow: hidden;
+    justify-self: center;
+}
+    thead{
+        box-shadow: 0 5px 10px #555;
+    }
+    th{
+        padding: 1rem 2rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1rem;
+        font-size: 0.7rem;
+        font-weight: 900;
+    }
+    td{
+        padding: 1rem 2rem;
+    }
+    .classification{
+        border-radius:  10px;
+        /* background-color: #f44336; */
+        padding: 0.2rem 1rem;
+        text-align: center;
+    } 
+    .classification.class1{
+        background-color: #2ECC71;
+        color: #fff;
+    }
+    .classification.class2{
+        background-color: #F4D03F;
+        color: #fff;
+    }
+    .classification.class3{
+        background-color: #f44336;
+        color: #fff;
+    }
+    
